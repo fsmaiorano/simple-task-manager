@@ -2,8 +2,8 @@
 using System;
 using System.Net;
 using TaskManager.API.Models;
+using TaskManager.Application.Interfaces;
 using TaskManager.Domain.Entities;
-using TaskManager.Domain.Interfaces.Services;
 
 
 namespace TaskManager.API.Controllers
@@ -12,9 +12,9 @@ namespace TaskManager.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IUserAppService _userService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserAppService userService)
         {
             _userService = userService;
         }
