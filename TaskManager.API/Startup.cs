@@ -10,7 +10,7 @@ using TaskManager.Domain.Interfaces.Repositories;
 using TaskManager.Domain.Interfaces.Services;
 using TaskManager.Domain.Services;
 using TaskManager.Infrastructure.Data.Context;
-using TaskManager.Infrastructure.Data.Repositories.User;
+using TaskManager.Infrastructure.Data.Repositories.UserRepository;
 
 namespace TaskManager.API
 {
