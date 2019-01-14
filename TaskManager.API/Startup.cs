@@ -10,6 +10,7 @@ using TaskManager.Domain.Interfaces.Repositories;
 using TaskManager.Domain.Interfaces.Services;
 using TaskManager.Domain.Services;
 using TaskManager.Infrastructure.Data.Context;
+using TaskManager.Infrastructure.Data.Repositories.BoardRepository;
 using TaskManager.Infrastructure.Data.Repositories.UserRepository;
 
 namespace TaskManager.API
@@ -50,6 +51,10 @@ namespace TaskManager.API
             services.AddScoped<IUserAppService, UserAppService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRespository>();
+
+            services.AddScoped<IBoardAppService, BoardAppService>();
+            services.AddScoped<IBoardService, BoardService>();
+            services.AddScoped<IBoardRepository, BoardRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

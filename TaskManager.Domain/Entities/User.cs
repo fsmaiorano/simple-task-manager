@@ -15,11 +15,12 @@ namespace TaskManager.Domain.Entities
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
-        public virtual ICollection<Board> Boards { get; set; }
+        //public virtual ICollection<Board> Boards { get; set; }
 
 
         public User()
         {
+            //Boards = new List<Board>();
             Active = true;
             CreatedAt = DateTime.Now;
         }
