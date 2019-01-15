@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using TaskManager.Domain.Entities;
 using TaskManager.Domain.Interfaces.Repositories;
@@ -10,7 +9,7 @@ using TaskManager.Infrastructure.Data.Context;
 
 namespace TaskManager.Infrastructure.Data.Repositories.BoardRepository
 {
-    public class BoardRepository: IBoardRepository
+    public class BoardRepository : IBoardRepository
     {
         private readonly TaskManagerContext _context;
         public BoardRepository(TaskManagerContext context)
@@ -21,12 +20,12 @@ namespace TaskManager.Infrastructure.Data.Repositories.BoardRepository
 
         public BoardEntity GetById(int id)
         {
-            return _context.Boards.Where(x=>x.Id.Equals(id)).FirstOrDefault();
+            return _context.Boards.Where(x => x.Id.Equals(id)).FirstOrDefault();
         }
 
         public BoardEntity GetByName(string boardName)
         {
-            return _context.Boards.Where(x => x.Name.Equals(boardName)).Include(x=>x.Tasks).FirstOrDefault();
+            return _context.Boards.Where(x => x.Name.Equals(boardName)).Include(x => x.Tasks).FirstOrDefault();
         }
 
         public List<BoardEntity> GetAllByUserId(int userId)
@@ -62,7 +61,7 @@ namespace TaskManager.Infrastructure.Data.Repositories.BoardRepository
             }
         }
 
-          public async Task<BoardEntity> Delete(BoardEntity board)
+        public async Task<BoardEntity> Delete(BoardEntity board)
         {
             try
             {

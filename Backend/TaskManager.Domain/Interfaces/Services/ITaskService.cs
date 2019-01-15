@@ -10,5 +10,6 @@ namespace TaskManager.Domain.Interfaces.Services
         List<TaskEntity> GetAllByBoardId(int boardId);
         Task<TaskEntity> Add(TaskEntity task);
         Task<TaskEntity> Update(TaskEntity task);
+        Task<TaskEntity> Delete(int id);
     }
 }
