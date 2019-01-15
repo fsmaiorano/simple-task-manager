@@ -79,38 +79,18 @@ namespace TaskManager.API.Controllers
             }
         }
 
-
-
-        //// GET: api/UserGroup
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
-        //// GET: api/UserGroup/5
-        //[HttpGet("{id}", Name = "Get")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        //// POST: api/UserGroup
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        //// PUT: api/UserGroup/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE: api/ApiWithActions/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        [HttpPut("update")]
+        public async Task<ResponseMessage> Update(UserGroupEntity usergroup)
+        {
+            try
+            {
+                var storedUserGroup = await _usergroupService.Update(usergroup);
+                return new ResponseMessage(true, storedUserGroup, "UserGroup updated with success!", HttpStatusCode.OK);
+            }
+            catch (Exception err)
+            {
+                return new ResponseMessage(false, null, err.Message, HttpStatusCode.BadRequest);
+            }
+        }
     }
 }
