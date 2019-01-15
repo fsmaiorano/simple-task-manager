@@ -65,7 +65,7 @@ namespace TaskManager.API.Controllers
 
 
         [HttpPost("add")]
-        public async Task<ResponseMessage> Add(Domain.Entities.Task task)
+        public async Task<ResponseMessage> Add(Domain.Entities.TaskEntity task)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace TaskManager.API.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<ResponseMessage> Update(Domain.Entities.Task task)
+        public async Task<ResponseMessage> Update(Domain.Entities.TaskEntity task)
         {
             try
             {

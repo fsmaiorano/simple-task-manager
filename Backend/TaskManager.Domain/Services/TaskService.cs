@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using TaskManager.Domain.Entities;
 using TaskManager.Domain.Interfaces.Repositories;
@@ -8,7 +7,7 @@ using TaskManager.Domain.Interfaces.Services;
 
 namespace TaskManager.Domain.Services
 {
-    public class TaskService: ITaskService
+    public class TaskService : ITaskService
     {
 
         private readonly ITaskRepository _taskRepository;
@@ -20,21 +19,21 @@ namespace TaskManager.Domain.Services
             _boardRepository = boardRepository;
         }
 
-        public List<Domain.Entities.Task> GetAllByBoardId(int boardId)
+        public List<TaskEntity> GetAllByBoardId(int boardId)
         {
             return _taskRepository.GetAllByBoardId(boardId);
         }
 
-        public Domain.Entities.Task GetById(int id)
+        public TaskEntity GetById(int id)
         {
             return _taskRepository.GetById(id);
         }
 
-        public async Task<Domain.Entities.Task> Add(Domain.Entities.Task task)
+        public async Task<TaskEntity> Add(TaskEntity task)
         {
             var storedTask = _boardRepository.GetById(task.BoardId);
 
-            if(storedTask == null)
+            if (storedTask == null)
             {
                 throw new Exception("Board not exists! Choice another name!");
             }
@@ -48,10 +47,9 @@ namespace TaskManager.Domain.Services
             {
                 throw error;
             }
-
         }
 
-        public async Task<Domain.Entities.Task> Update(Domain.Entities.Task task)
+        public async Task<TaskEntity> Update(TaskEntity task)
         {
             var storedTask = _taskRepository.GetById(task.Id);
 

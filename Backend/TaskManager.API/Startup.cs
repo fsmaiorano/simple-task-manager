@@ -24,6 +24,7 @@ namespace TaskManager.API
             //Recupera a string de conexão
             var builder = new ConfigurationBuilder().AddJsonFile("config.json");
             Configuration = builder.Build();
+
         }
 
         public IConfiguration Configuration { get; }
@@ -61,7 +62,12 @@ namespace TaskManager.API
             services.AddScoped<ITaskService, TaskService>();
             services.AddScoped<ITaskRepository, TaskRepository>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+         .AddJsonOptions(
+             options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+         ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,6 +85,7 @@ namespace TaskManager.API
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
 
             app.UseHttpsRedirection();
             app.UseMvc();

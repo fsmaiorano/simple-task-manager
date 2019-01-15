@@ -41,7 +41,7 @@ namespace TaskManager.API.Controllers
         }
 
         [HttpPost("signin")]
-        public ResponseMessage Signin(User user)
+        public ResponseMessage Signin(UserEntity user)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace TaskManager.API.Controllers
         }
 
         [HttpPost("signup")]
-        public ResponseMessage Signup(User user)
+        public ResponseMessage Signup(UserEntity user)
         {
             try
             {
