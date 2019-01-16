@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
 // Material
-import { MatToolbarModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIcon } from "@angular/material";
+import { MatToolbarModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule } from "@angular/material";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
@@ -19,8 +19,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         FormsModule,
         ReactiveFormsModule,
         MatInputModule,
-        BrowserAnimationsModule,
-        MatIcon
+        BrowserAnimationsModule
     ],
     exports: [
         MatToolbarModule,
@@ -31,8 +30,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         FormsModule,
         ReactiveFormsModule,
         MatInputModule,
-        BrowserAnimationsModule,
-        MatIcon
+        BrowserAnimationsModule
     ]
 })
 export class SharedModule {}
