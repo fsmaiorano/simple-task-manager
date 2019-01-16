@@ -2,10 +2,10 @@
     <div class="card">
         <h1 class="card__title">Task Manager</h1>
         <div class="card__content">
-            <form [formGroup]="frmAuth" novalidate>
+            <form [formGroup]="frmAuth">
                 <mat-form-field appearance="standard">
                     <mat-label>Standard form field</mat-label>
-                    <input matInput placeholder="Placeholder" />
+                    <input matInput placeholder="Placeholder" formControlName="email" />
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                     <mat-hint>Hint</mat-hint>
                 </mat-form-field>
