@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 })
 export class AuthComponent implements OnInit {
     public frmAuth: FormGroup;
+    // public emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
     constructor(private fb: FormBuilder) {}
 
@@ -17,7 +18,8 @@ export class AuthComponent implements OnInit {
 
     initForm() {
         this.frmAuth = this.fb.group({
-            email: this.fb.control("", [Validators.required])
+            email: this.fb.control("", [Validators.required, Validators.pattern(this.emailPattern)]),
+            password: this.fb.control("", [Validators.required])
         });
     }
 }

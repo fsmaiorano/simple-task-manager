@@ -3,12 +3,16 @@
         <h1 class="card__title">Task Manager</h1>
         <div class="card__content">
             <form [formGroup]="frmAuth">
-                <mat-form-field appearance="standard">
-                    <mat-label>Standard form field</mat-label>
-                    <input matInput placeholder="Placeholder" formControlName="email" />
-                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                    <mat-hint>Hint</mat-hint>
-                </mat-form-field>
+                <app-input-validation-container errorMessage="E-mail is required!" customValidator="true" validator="email">
+                    <mat-form-field>
+                        <input matInput placeholder="E-mail" type="email" formControlName="email" />
+                    </mat-form-field>
+                </app-input-validation-container>
+                <app-input-validation-container errorMessage="Password is required!">
+                    <mat-form-field>
+                        <input matInput placeholder="Password" type="password" formControlName="password" />
+                    </mat-form-field>
+                </app-input-validation-container>
             </form>
         </div>
     </div>

@@ -6,9 +6,10 @@ import { HttpClientModule } from "@angular/common/http";
 // Material
 import { MatToolbarModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule } from "@angular/material";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { InputComponent } from "./components/input/input.component";
 
 @NgModule({
-    declarations: [],
+    declarations: [InputComponent],
     imports: [
         CommonModule,
         MatToolbarModule,
@@ -30,7 +31,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         FormsModule,
         ReactiveFormsModule,
         MatInputModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        InputComponent
     ]
 })
 export class SharedModule {}

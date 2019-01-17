@@ -1,0 +1,3 @@
+<ng-content></ng-content>
+<mat-hint class="hint" *ngIf="showTip && !hasError()"> {{ tipMessage }}</mat-hint>
+<mat-error class="error" *ngIf="hasError()"> {{ errorMessage }} </mat-error>
