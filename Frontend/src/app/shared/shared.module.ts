@@ -6,10 +6,13 @@ import { HttpClientModule } from "@angular/common/http";
 // Material
 import { MatToolbarModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule } from "@angular/material";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 import { InputComponent } from "./components/input/input.component";
+import { EqualValidator } from "./directives/equal-validator.directive";
+import { EmailValidator } from "./directives/email-validator.directive";
 
 @NgModule({
-    declarations: [InputComponent],
+    declarations: [InputComponent, EqualValidator, EmailValidator],
     imports: [
         CommonModule,
         MatToolbarModule,
@@ -32,7 +35,9 @@ import { InputComponent } from "./components/input/input.component";
         ReactiveFormsModule,
         MatInputModule,
         BrowserAnimationsModule,
-        InputComponent
+        InputComponent,
+        EqualValidator,
+        EmailValidator
     ]
 })
 export class SharedModule {}

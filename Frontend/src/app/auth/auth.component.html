@@ -3,12 +3,12 @@
         <h1 class="card__title">Task Manager</h1>
         <div class="card__content">
             <form [formGroup]="frmAuth">
-                <app-input-validation-container errorMessage="E-mail is required!" customValidator="true" validator="email">
+                <app-input-validation-container>
                     <mat-form-field>
                         <input matInput placeholder="E-mail" type="email" formControlName="email" />
                     </mat-form-field>
                 </app-input-validation-container>
-                <app-input-validation-container errorMessage="Password is required!">
+                <app-input-validation-container>
                     <mat-form-field>
                         <input matInput placeholder="Password" type="password" formControlName="password" />
                     </mat-form-field>
