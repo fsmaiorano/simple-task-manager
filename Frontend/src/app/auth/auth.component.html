@@ -13,7 +13,9 @@
                         <input matInput placeholder="Password" type="password" formControlName="password" />
                     </mat-form-field>
                 </app-input-validation-container>
+                <button [disabled]="!frmAuth.valid" mat-raised-button color="primary">Signin</button>
             </form>
+            <a [routerLink]="['/signup']">Signup</a>
         </div>
     </div>
 </section>

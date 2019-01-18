@@ -10,9 +10,10 @@ import { AuthComponent } from "./auth/auth.component";
 
 // Modules
 import { SharedModule } from "./shared/shared.module";
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
-    declarations: [AppComponent, AuthComponent],
+    declarations: [AppComponent, AuthComponent, SignupComponent],
     imports: [BrowserModule, AppRoutingModule, SharedModule],
     providers: [],
     bootstrap: [AppComponent]
