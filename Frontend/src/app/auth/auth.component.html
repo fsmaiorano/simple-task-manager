@@ -11,7 +11,12 @@
                         <input matInput placeholder="E-mail" type="email" formControlName="email" />
                     </mat-form-field>
                 </app-input-validation-container>
-                <app-input-validation-container>
+                <app-input-validation-container *ngIf="mode === 'signin'">
+                    <mat-form-field>
+                        <input matInput placeholder="Password" type="password" formControlName="password" />
+                    </mat-form-field>
+                </app-input-validation-container>
+                <app-input-validation-container *ngIf="mode === 'signup'">
                     <mat-form-field>
                         <input
                             matInput
@@ -36,7 +41,7 @@
                 </app-input-validation-container>
                 <button *ngIf="mode === 'signin'" [disabled]="!frmAuth.valid" mat-raised-button color="primary">Signin</button>
                 <button *ngIf="mode === 'signup'" [disabled]="!frmAuth.valid" mat-raised-button color="primary">Register</button>
-                <a *ngIf="mode === 'signin'" (click)="toggleMode()">Signup</a>
+                <a (click)="signin()" *ngIf="mode === 'signin'" (click)="toggleMode()">Signup</a>
                 <a *ngIf="mode === 'signup'" (click)="toggleMode()">Signin</a>
             </form>
         </div>

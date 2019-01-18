@@ -15,10 +15,27 @@ export class AuthComponent implements OnInit {
 
     ngOnInit() {
         this.mode = "signin";
-        this.initForm();
+        this.initSigninForm();
     }
 
-    initForm() {
+    toggleMode(): void {
+        if (this.mode === "signup") {
+            this.mode = "signin";
+            this.initSigninForm();
+        } else {
+            this.mode = "signup";
+            this.initSignupForm();
+        }
+    }
+
+    initSigninForm() {
+        this.frmAuth = this.fb.group({
+            email: this.fb.control("", [Validators.required, Validators.email]),
+            password: this.fb.control("", [Validators.required])
+        });
+    }
+
+    initSignupForm(): void {
         this.frmAuth = this.fb.group({
             name: this.fb.control("", [Validators.required]),
             email: this.fb.control("", [Validators.required, Validators.email]),
@@ -27,7 +44,8 @@ export class AuthComponent implements OnInit {
         });
     }
 
-    toggleMode(): void {
-        this.mode === "signup" ? (this.mode = "signin") : (this.mode = "signup");
+    signin(): void {
+        debugger;
+        const x = this.frmAuth;
     }
 }
