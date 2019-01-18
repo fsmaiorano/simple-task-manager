@@ -1,25 +1,31 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { AuthComponent } from "./auth.component";
+import { SharedModule } from "../shared/shared.module";
 
-import { AuthComponent } from './auth.component';
+describe("AuthComponent", () => {
+    let component: AuthComponent;
+    let fixture: ComponentFixture<AuthComponent>;
+    const fb: FormBuilder = new FormBuilder();
+    const validators: Validators = new Validators();
 
-describe('AuthComponent', () => {
-  let component: AuthComponent;
-  let fixture: ComponentFixture<AuthComponent>;
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [SharedModule],
+            declarations: [AuthComponent],
+            providers: [{ provide: FormBuilder, useValue: fb }, { provide: Validators, useValue: validators }]
+        }).compileComponents();
+    }));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AuthComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AuthComponent);
+        component = fixture.componentInstance;
+        component.mode = "signin";
+        component.initSigninForm();
+        fixture.detectChanges();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AuthComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it("should create", () => {
+        expect(component).toBeTruthy();
+    });
 });
