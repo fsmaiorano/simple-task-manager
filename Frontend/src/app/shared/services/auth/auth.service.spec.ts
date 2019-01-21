@@ -2,6 +2,8 @@ import { TestBed } from "@angular/core/testing";
 import { HttpClientModule } from "@angular/common/http";
 import { AuthService } from "./auth.service";
 
+import { AuthComponent } from "src/app/auth/auth.component";
+
 describe("AuthService", () => {
     beforeEach(() =>
         TestBed.configureTestingModule({
@@ -16,6 +18,15 @@ describe("AuthService", () => {
 
     it("should be logged in", () => {
         const service: AuthService = TestBed.get(AuthService);
-        // expect(service.signin("dotnet", "SP")).toBeTruthy();
+
+        const auth = {
+            email: "fsmaiorano@gmail.com",
+            password: "123"
+        };
+
+        service.signin(auth).subscribe((res) => {
+            // expect(service.signin(auth)).toBeTruthy();
+            expect(res.id).toBeDefined();
+        });
     });
 });
