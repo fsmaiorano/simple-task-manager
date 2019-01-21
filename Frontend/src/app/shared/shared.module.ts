@@ -10,9 +10,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { InputComponent } from "./components/input/input.component";
 import { EqualValidator } from "./directives/equal-validator.directive";
 import { EmailValidator } from "./directives/email-validator.directive";
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-    declarations: [InputComponent, EqualValidator, EmailValidator],
+    declarations: [InputComponent, EqualValidator, EmailValidator, HeaderComponent],
     imports: [
         CommonModule,
         MatToolbarModule,
