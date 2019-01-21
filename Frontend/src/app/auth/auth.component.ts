@@ -56,7 +56,7 @@ export class AuthComponent implements OnInit {
             (res: User) => {
                 this.feedback = undefined;
                 this.userLogged = res;
-                console.log("usuário logado ", this.userLogged);
+                console.log("Logged User: ", this.userLogged);
             },
             (err: Error) => {
                 this.feedback = err.message;
@@ -66,5 +66,14 @@ export class AuthComponent implements OnInit {
 
     signup(): void {
         const form = this.frmAuth.value;
+        this.authService.signup(form).subscribe(
+            (res: User) => {
+                this.feedback = undefined;
+                this.userLogged = res;
+            },
+            (err: Error) => {
+                this.feedback = err.message;
+            }
+        );
     }
 }

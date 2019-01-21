@@ -25,4 +25,15 @@ export class AuthService {
             })
         );
     }
+
+    signup(auth: Auth): Observable<User> {
+        return this.http.post(`${environment.apiUrl}/api/user/signup`, auth).pipe(
+            map((res: ApiResponse) => {
+                if (res.status === 200) {
+                    return res.content as User;
+                }
+                throw new Error(res.message);
+            })
+        );
+    }
 }
