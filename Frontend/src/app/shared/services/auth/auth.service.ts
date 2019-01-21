@@ -19,6 +19,7 @@ export class AuthService {
         return this.http.post(`${environment.apiUrl}/api/user/signin`, auth).pipe(
             map((res: ApiResponse) => {
                 if (res.status === 200) {
+                    this.storeUser(res.content);
                     return res.content as User;
                 }
                 throw new Error(res.message);
@@ -30,10 +31,20 @@ export class AuthService {
         return this.http.post(`${environment.apiUrl}/api/user/signup`, auth).pipe(
             map((res: ApiResponse) => {
                 if (res.status === 200) {
+                    this.storeUser(res.content);
                     return res.content as User;
                 }
                 throw new Error(res.message);
             })
         );
+    }
+
+    storeUser(user: User): void {
+        sessionStorage.setItem("@TaskManager-User", JSON.stringify(user));
+    }
+
+    getUser(): User {
+        const user = sessionStorage.getItem("@TaskManager-User");
+        return JSON.parse(user);
     }
 }
