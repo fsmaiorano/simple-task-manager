@@ -8,18 +8,19 @@ import { Observable, throwError } from "rxjs";
 import { map, catchError } from "rxjs/operators";
 import { ApiResponse } from "../../models/api-response.model";
 import { User } from "../../models/user.model";
+import { AuthSingletonService } from "../../singletons/auth/auth-singleton.service";
 
 @Injectable({
     providedIn: "root"
 })
 export class AuthService {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private authSingleton: AuthSingletonService) {}
 
     signin(auth: Auth): Observable<User> {
         return this.http.post(`${environment.apiUrl}/api/user/signin`, auth).pipe(
             map((res: ApiResponse) => {
                 if (res.status === 200) {
-                    this.storeUser(res.content);
+                    this.authSingleton.saveUser(res.content);
                     return res.content as User;
                 }
                 throw new Error(res.message);
@@ -31,20 +32,11 @@ export class AuthService {
         return this.http.post(`${environment.apiUrl}/api/user/signup`, auth).pipe(
             map((res: ApiResponse) => {
                 if (res.status === 200) {
-                    this.storeUser(res.content);
+                    this.authSingleton.saveUser(res.content);
                     return res.content as User;
                 }
                 throw new Error(res.message);
             })
         );
-    }
-
-    storeUser(user: User): void {
-        sessionStorage.setItem("@TaskManager-User", JSON.stringify(user));
-    }
-
-    getUser(): User {
-        const user = sessionStorage.getItem("@TaskManager-User");
-        return JSON.parse(user);
     }
 }
