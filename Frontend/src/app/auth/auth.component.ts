@@ -17,6 +17,7 @@ export class AuthComponent implements OnInit {
     public mode: string;
     public userLogged: User;
     public feedback: string;
+    public isLoading: boolean;
 
     constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
 
@@ -26,6 +27,8 @@ export class AuthComponent implements OnInit {
     }
 
     toggleMode(): void {
+        this.frmAuth.reset();
+        this.feedback = undefined;
         if (this.mode === "signup") {
             this.mode = "signin";
             this.initSigninForm();
@@ -52,30 +55,36 @@ export class AuthComponent implements OnInit {
     }
 
     signin(): void {
+        this.isLoading = true;
         const form: Auth = this.frmAuth.value;
         this.authService.signin(form).subscribe(
             (res: User) => {
                 this.feedback = undefined;
+                this.isLoading = false;
                 this.userLogged = res;
                 console.log("Logged User: ", this.userLogged);
                 this.router.navigateByUrl("/home");
             },
             (err: Error) => {
                 this.feedback = err.message;
+                this.isLoading = false;
             }
         );
     }
 
     signup(): void {
+        this.isLoading = true;
         const form = this.frmAuth.value;
         this.authService.signup(form).subscribe(
             (res: User) => {
                 this.feedback = undefined;
+                this.isLoading = false;
                 this.userLogged = res;
                 this.router.navigateByUrl("/home");
             },
             (err: Error) => {
                 this.feedback = err.message;
+                this.isLoading = false;
             }
         );
     }
