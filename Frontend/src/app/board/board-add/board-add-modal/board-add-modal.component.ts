@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from "@angular/material";
+import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 
 @Component({
     selector: "app-board-add-modal",
@@ -7,20 +8,34 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from "@angular/material";
     styleUrls: ["./board-add-modal.component.scss"]
 })
 export class BoardAddModalComponent implements OnInit {
-    modalData: any;
-    constructor(public dialogRef: MatDialogRef<BoardAddModalComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+    public frmAddBoard: FormGroup;
+    public modalData: any;
+
+    constructor(
+        public dialogRef: MatDialogRef<BoardAddModalComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private fb: FormBuilder
+    ) {
         this.modalData = data;
     }
 
     ngOnInit() {
         console.log(this.modalData);
+        this.initNewBoardForm();
     }
 
-    onNoClick(): void {
-        this.dialogRef.close(false);
+    initNewBoardForm() {
+        this.frmAddBoard = this.fb.group({
+            name: this.fb.control("", [Validators.required]),
+            description: this.fb.control("", [Validators.required])
+        });
     }
 
-    onYesClick(): void {
-        this.dialogRef.close(true);
+    onCancelClick(): void {
+        this.dialogRef.close(undefined);
+    }
+
+    onAddClick(): void {
+        this.dialogRef.close(this.frmAddBoard.value);
     }
 }

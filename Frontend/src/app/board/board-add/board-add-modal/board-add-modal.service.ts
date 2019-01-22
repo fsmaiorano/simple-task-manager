@@ -8,7 +8,7 @@ import { take } from "rxjs/operators";
     providedIn: "root"
 })
 export class BoardAddModalService {
-    result: EventEmitter<Boolean> = new EventEmitter();
+    result: EventEmitter<any> = new EventEmitter();
 
     constructor(public dialog: MatDialog) {}
 

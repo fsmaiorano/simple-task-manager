@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { BoardAddModalService } from "./board-add-modal/board-add-modal.service";
 
+import { take } from "rxjs/operators";
+import { Board } from "src/app/shared/models/board.model";
+
 @Component({
     selector: "app-board-add",
     templateUrl: "./board-add.component.html",
@@ -13,5 +16,10 @@ export class BoardAddComponent implements OnInit {
 
     openModal(): void {
         this.boardAddModalService.openDialog();
+        this.boardAddModalService.result.pipe(take(1)).subscribe((newBoard: any) => {
+            debugger;
+            if (newBoard) {
+            }
+        });
     }
 }
