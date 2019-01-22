@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "../shared/services/auth/auth.service";
 import { Auth } from "../shared/models/auth.model";
-import { catchError } from "rxjs/operators";
 import { User } from "../shared/models/user.model";
 import { Router } from "@angular/router";
 import { AuthSingletonService } from "../shared/singletons/auth/auth-singleton.service";

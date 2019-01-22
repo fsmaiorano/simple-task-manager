@@ -1,6 +1,10 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from "@angular/material";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
+import { BoardService } from "src/app/shared/services/board/board.service";
+import { AuthSingletonService } from "src/app/shared/singletons/auth/auth-singleton.service";
+import { Board } from "src/app/shared/models/board.model";
+import { map } from "rxjs/operators";
 
 @Component({
     selector: "app-board-add-modal",
@@ -14,7 +18,9 @@ export class BoardAddModalComponent implements OnInit {
     constructor(
         public dialogRef: MatDialogRef<BoardAddModalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private boardService: BoardService,
+        private authSingletonService: AuthSingletonService
     ) {
         this.modalData = data;
     }
@@ -36,6 +42,16 @@ export class BoardAddModalComponent implements OnInit {
     }
 
     onAddClick(): void {
-        this.dialogRef.close(this.frmAddBoard.value);
+        const user = this.authSingletonService.getUser();
+        const newBoard = this.frmAddBoard.value as Board;
+        newBoard.userId = user.id;
+        debugger;
+        this.boardService
+            .Add(newBoard)
+            .subscribe((res: Board) => {
+                debugger;
+                this.dialogRef.close(res);
+            })
+            .unsubscribe();
     }
 }
