@@ -48,8 +48,13 @@ export class BoardAddModalComponent implements OnInit {
         this.boardService
             .Add(newBoard)
             .pipe(first())
-            .subscribe((res: Board) => {
-                this.dialogRef.close(res);
-            });
+            .subscribe(
+                (res: Board) => {
+                    this.dialogRef.close(res);
+                },
+                (err: Error) => {
+                    this.dialogRef.close(err);
+                }
+            );
     }
 }
