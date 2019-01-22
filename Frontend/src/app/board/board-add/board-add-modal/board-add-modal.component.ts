@@ -4,7 +4,7 @@ import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { BoardService } from "src/app/shared/services/board/board.service";
 import { AuthSingletonService } from "src/app/shared/singletons/auth/auth-singleton.service";
 import { Board } from "src/app/shared/models/board.model";
-import { map } from "rxjs/operators";
+import { map, first } from "rxjs/operators";
 
 @Component({
     selector: "app-board-add-modal",
@@ -47,9 +47,9 @@ export class BoardAddModalComponent implements OnInit {
         newBoard.userId = user.id;
         this.boardService
             .Add(newBoard)
+            .pipe(first())
             .subscribe((res: Board) => {
                 this.dialogRef.close(res);
-            })
-            .unsubscribe();
+            });
     }
 }

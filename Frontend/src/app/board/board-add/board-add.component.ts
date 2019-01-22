@@ -29,12 +29,11 @@ export class BoardAddComponent implements OnInit {
 
     openModal(): void {
         this.boardAddModalService.openDialog();
-        this.boardAddModalService.result
-            .pipe(take(1))
-            .subscribe((newBoard: any) => {
-                this.snackbarService.open("Board created with success!");
-            })
-            .unsubscribe();
+
+        this.boardAddModalService.result.pipe(take(1)).subscribe((newBoard: any) => {
+            debugger;
+            this.snackbarService.open("Board created with success!");
+        });
     }
 
     // addBoard(newBoard: Board): void {
