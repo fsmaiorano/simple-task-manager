@@ -19,7 +19,6 @@ export class BoardService {
                 if (res.status === 200) {
                     return res.content as Board;
                 }
-                debugger;
                 throw new Error(res.message);
             })
         );

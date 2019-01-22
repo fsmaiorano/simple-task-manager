@@ -45,11 +45,9 @@ export class BoardAddModalComponent implements OnInit {
         const user = this.authSingletonService.getUser();
         const newBoard = this.frmAddBoard.value as Board;
         newBoard.userId = user.id;
-        debugger;
         this.boardService
             .Add(newBoard)
             .subscribe((res: Board) => {
-                debugger;
                 this.dialogRef.close(res);
             })
             .unsubscribe();

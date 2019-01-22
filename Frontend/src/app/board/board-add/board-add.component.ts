@@ -32,7 +32,7 @@ export class BoardAddComponent implements OnInit {
         this.boardAddModalService.result
             .pipe(take(1))
             .subscribe((newBoard: any) => {
-                debugger;
+                this.snackbarService.open("Board created with success!");
             })
             .unsubscribe();
     }
