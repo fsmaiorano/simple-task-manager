@@ -17,7 +17,6 @@ export class BoardAddComponent implements OnInit {
     openModal(): void {
         this.boardAddModalService.openDialog();
         this.boardAddModalService.result.pipe(take(1)).subscribe((newBoard: any) => {
-            debugger;
             if (newBoard) {
             }
         });
