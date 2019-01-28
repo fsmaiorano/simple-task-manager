@@ -23,9 +23,10 @@ import { InputComponent } from "./components/input/input.component";
 import { EqualValidator } from "./directives/equal-validator.directive";
 import { EmailValidator } from "./directives/email-validator.directive";
 import { HeaderComponent } from "./components/header/header.component";
+import { DragAndDropComponent } from './components/drag-and-drop/drag-and-drop/drag-and-drop.component';
 
 @NgModule({
-    declarations: [InputComponent, EqualValidator, EmailValidator, HeaderComponent],
+    declarations: [InputComponent, EqualValidator, EmailValidator, HeaderComponent, DragAndDropComponent],
     imports: [
         CommonModule,
         MatToolbarModule,
