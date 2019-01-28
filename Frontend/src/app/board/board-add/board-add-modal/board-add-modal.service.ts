@@ -2,7 +2,9 @@ import { Injectable, EventEmitter } from "@angular/core";
 import { MatDialog } from "@angular/material";
 import { BoardAddModalComponent } from "./board-add-modal.component";
 
-import { take } from "rxjs/operators";
+import { take, first } from "rxjs/operators";
+import { Board } from "src/app/shared/models/board.model";
+import { Observable, Subscribable } from "rxjs";
 
 @Injectable({
     providedIn: "root"
@@ -12,7 +14,11 @@ export class BoardAddModalService {
 
     constructor(public dialog: MatDialog) {}
 
-    openDialog() {
+    closeDialog(): void {
+        this.dialog.closeAll();
+    }
+
+    openDialog(): void {
         // openDialog(action, message) {
         // const data = {
         //     action,
@@ -28,10 +34,15 @@ export class BoardAddModalService {
 
         dialogRef
             .afterClosed()
-            .pipe(take(1))
-            .subscribe((value) => {
-                this.result.emit(value);
-            });
+            .pipe(first())
+            .subscribe(
+                (res: Board) => {
+                    this.result.emit(res);
+                },
+                (err: Error) => {
+                    this.result.emit(err);
+                }
+            );
     }
 }
 

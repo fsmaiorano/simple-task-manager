@@ -5,6 +5,7 @@ import { Auth } from "../shared/models/auth.model";
 import { User } from "../shared/models/user.model";
 import { Router } from "@angular/router";
 import { AuthSingletonService } from "../shared/singletons/auth/auth-singleton.service";
+import { first } from "rxjs/operators";
 
 @Component({
     selector: "app-auth",
@@ -69,6 +70,7 @@ export class AuthComponent implements OnInit {
         const form: Auth = this.frmAuth.value;
         this.authService
             .signin(form)
+            .pipe(first())
             .subscribe(
                 (res: User) => {
                     this.feedback = undefined;
@@ -81,8 +83,7 @@ export class AuthComponent implements OnInit {
                     this.feedback = err.message;
                     this.isLoading = false;
                 }
-            )
-            .unsubscribe();
+            );
     }
 
     signup(): void {
@@ -90,6 +91,7 @@ export class AuthComponent implements OnInit {
         const form = this.frmAuth.value;
         this.authService
             .signup(form)
+            .pipe(first())
             .subscribe(
                 (res: User) => {
                     this.feedback = undefined;
@@ -101,7 +103,6 @@ export class AuthComponent implements OnInit {
                     this.feedback = err.message;
                     this.isLoading = false;
                 }
-            )
-            .unsubscribe();
+            );
     }
 }
