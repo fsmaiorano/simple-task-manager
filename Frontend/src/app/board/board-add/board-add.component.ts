@@ -35,17 +35,20 @@ export class BoardAddComponent implements OnInit {
 
         this.boardAddModalService.result.pipe(take(1)).subscribe(
             (newBoard: any) => {
-                if (newBoard.hasOwnProperty("id")) {
+                if (newBoard && newBoard.hasOwnProperty("id")) {
                     this.snackbarService.open("Board created with success!");
                     this.boardSingletonService.newBoardAlert(true);
-                } else {
-                    this.snackbarService.open("An error has occurred. Try again... :(");
-                    console.log(newBoard.message);
-                    // this.snackbarService.open(newBoard.message);
                 }
+                // else {
+                //     this.snackbarService.open("An error has occurred. Try again... :(");
+                //     console.log(newBoard.message);
+                //     // this.snackbarService.open(newBoard.message);
+                // }
             },
             (err: Error) => {
-                this.snackbarService.open(err.message);
+                if (err) {
+                    this.snackbarService.open(err.message);
+                }
             }
         );
     }
