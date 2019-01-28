@@ -34,7 +34,7 @@ namespace TaskManager.API
         public void ConfigureServices(IServiceCollection services)
         {
             //CORS
-            services.AddCors();
+            // services.AddCors();
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
