@@ -9,6 +9,7 @@ import { User } from "src/app/shared/models/user.model";
 import { BoardService } from "src/app/shared/services/board/board.service";
 import { AuthSingletonService } from "src/app/shared/singletons/auth/auth-singleton.service";
 import { SnackbarService } from "src/app/shared/components/snackbar/snackbar";
+import { BoardSingletonService } from "src/app/shared/singletons/board/board-singleton.service";
 
 @Component({
     selector: "app-board-list",
@@ -23,7 +24,8 @@ export class BoardListComponent implements OnInit {
         private boardService: BoardService,
         private authSingleton: AuthSingletonService,
         private router: Router,
-        private snackbarService: SnackbarService
+        private snackbarService: SnackbarService,
+        private boardSingletonService: BoardSingletonService
     ) {}
 
     ngOnInit() {
@@ -41,5 +43,11 @@ export class BoardListComponent implements OnInit {
                 this.snackbarService.open("Error has ocurred when we try get your boards. Try again another time.");
             }
         );
+    }
+
+    selectBoard(board: Board): void {
+        this.boardSingletonService.selectBoard(board);
+        // this.router.navigateByUrl("home/board-detail");
+        this.router.navigateByUrl("board-detail");
     }
 }
