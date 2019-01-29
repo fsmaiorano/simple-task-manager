@@ -17,15 +17,7 @@ export class TaskComponent implements OnInit {
     constructor(private taskService: TaskService, private snackbarService: SnackbarService) {}
 
     ngOnInit() {
-        this.tasks = new DragAndDrop();
-        this.organizeTasks();
-    }
-
-    organizeTasks(): void {
-        this.tasks.todo = this.board.tasks.filter((t) => t.status === 0) as Task[];
-        this.tasks.doing = this.board.tasks.filter((t) => t.status === 1) as Task[];
-        this.tasks.done = this.board.tasks.filter((t) => t.status === 2) as Task[];
-        console.log(this.tasks);
+        this.tasks = new DragAndDrop(this.board.tasks);
     }
 
     disableTask(task: Task): void {

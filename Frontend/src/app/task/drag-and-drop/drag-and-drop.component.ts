@@ -8,6 +8,9 @@ import { TaskService } from "src/app/shared/services/task/task.service";
 import { Status } from "src/app/shared/models/enums/status.enum";
 import { SnackbarService } from "src/app/shared/components/snackbar/snackbar";
 import { DragAndDrop } from "./drag-and-drop.model";
+import { TaskSingletonService } from "src/app/shared/singletons/task/task-singleton.service";
+import { BoardService } from "src/app/shared/services/board/board.service";
+import { BoardSingletonService } from "src/app/shared/singletons/board/board-singleton.service";
 
 @Component({
     selector: "app-drag-and-drop",
@@ -15,12 +18,30 @@ import { DragAndDrop } from "./drag-and-drop.model";
     styleUrls: ["./drag-and-drop.component.scss"]
 })
 export class DragAndDropComponent implements OnInit {
-    @Input() tasks: DragAndDrop;
-    public selectedTask: Task;
+    public tasks: DragAndDrop;
+    public board: Board;
     @Output() doDisableTask: EventEmitter<Task> = new EventEmitter();
-    constructor(private taskService: TaskService, private snackbarService: SnackbarService) {}
+    public selectedTask: Task;
 
-    ngOnInit() {}
+    constructor(
+        private taskService: TaskService,
+        private snackbarService: SnackbarService,
+        private taskSingletonService: TaskSingletonService,
+        private boardService: BoardService,
+        private boardSingletonService: BoardSingletonService
+    ) {}
+
+    ngOnInit() {
+        this.board = this.boardSingletonService.getSelectedBoard();
+        this.tasks = new DragAndDrop(this.board.tasks);
+        this.taskSingletonService.hasNewTask.subscribe((newTaskCreate: boolean) => {
+            if (newTaskCreate) {
+                this.boardService.GetById(this.board.id).subscribe((selectedBoard: Board) => {
+                    this.tasks = new DragAndDrop(selectedBoard.tasks);
+                });
+            }
+        });
+    }
 
     selectTask(task: Task): void {
         this.selectedTask = task;

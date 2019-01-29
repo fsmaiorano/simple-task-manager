@@ -49,7 +49,7 @@
             (cdkDropListDropped)="drop($event, 2)"
         >
             <ng-container *ngFor="let task of tasks.done">
-                <div class="box" (mousedown)="selectTask(task)" *ngIf="task.active" cdkDrag>
+                <div class="box" (mouseover)="selectTask(task)" (mousedown)="selectTask(task)" *ngIf="task.active" cdkDrag>
                     {{ task.title }}<mat-icon class="action" (click)="emitDisableTask(task)">delete</mat-icon>
                 </div>
             </ng-container>
@@ -57,4 +57,4 @@
     </div>
 </section>
 
-{{ tasks | json }}
+<!-- {{ tasks | json }} -->
