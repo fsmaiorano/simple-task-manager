@@ -22,7 +22,7 @@ const routes: Routes = [
         // ]
     },
     {
-        path: "board-detail",
+        path: ":boardName/board-detail",
         component: BoardDetailComponent
     }
 ];
