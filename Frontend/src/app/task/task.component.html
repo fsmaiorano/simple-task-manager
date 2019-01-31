@@ -1,5 +1,7 @@
 <section class="task">
-    <p *ngIf="board.tasks.length === 0">You don't have any Tasks in this board to show. Click here to create the first!</p>
+    <p class="base-margin" *ngIf="board.tasks.length === 0">
+        You don't have any Tasks in this board to show. Click here to create the first!
+    </p>
     <app-drag-and-drop *ngIf="board.tasks.length > 0" (doDisableTask)="disableTask($event)"></app-drag-and-drop>
     <app-task-add></app-task-add>
 </section>
