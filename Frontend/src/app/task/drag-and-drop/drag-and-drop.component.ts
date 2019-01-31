@@ -11,6 +11,7 @@ import { DragAndDrop } from "./drag-and-drop.model";
 import { TaskSingletonService } from "src/app/shared/singletons/task/task-singleton.service";
 import { BoardService } from "src/app/shared/services/board/board.service";
 import { BoardSingletonService } from "src/app/shared/singletons/board/board-singleton.service";
+import { take } from "rxjs/operators";
 
 @Component({
     selector: "app-drag-and-drop",
@@ -59,13 +60,10 @@ export class DragAndDropComponent implements OnInit {
         }
 
         this.selectedTask.status = newStatus;
-        this.taskService.updateStatus(this.selectedTask).subscribe(
-            (task: Task) => {},
-            (err: Error) => {
-                if (err) {
-                    this.snackbarService.open(err.message);
-                }
-            }
-        );
+        this.taskService
+            .updateStatus(this.selectedTask)
+            .toPromise()
+            .then(() => {})
+            .catch((err) => this.snackbarService.open(err.message));
     }
 }
